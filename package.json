@@ -1,0 +1,24 @@
+{
+  "name": "cordova-mortar-to-mortar",
+  "version": "0.0.1",
+  "description": "Cordova plugin for InMarket mortar to mortar SDK",
+  "cordova": {
+    "id": "cordova-mortar-to-mortar",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "inmarket",
+    "m2m",
+    "mortar",
+    "mortar to mortar",
+    "sdk"
+  ],
+  "author": {
+    "name": "Alexander Kawrykow"
+  },
+  "license": "MIT"
+}

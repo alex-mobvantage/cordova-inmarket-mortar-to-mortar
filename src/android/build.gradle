@@ -1,0 +1,23 @@
+repositories {
+  jcenter()
+  maven {
+    credentials {
+      username 'inmarketdev'
+      password 'a4c3cf09e39777c2fe2b512abf8979624a9bf41b'
+    }
+    url "https://inmarket.bintray.com/sun"
+  }
+}
+
+android {
+  buildToolsVersion "23.0.1"
+
+  defaultConfig {
+    minSdkVersion 15
+    targetSdkVersion 21
+  }
+}
+
+dependencies {
+  compile (group: 'com.inmarket', name: 'm2msdk-google-9.2.0', version: '2.51.225')
+}

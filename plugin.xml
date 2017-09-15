@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="M2M"
+  version="0.0.1">
+      
+  <name>InMarket Mortar to Mortar</name>
+  <description>Cordova plugin for the InMarket mortar to mortar SDK</description>
+  <author>Alexander Kawrykow</author>
+  <license>MIT</license>
+  <keywords>inmarket,m2m,mortar,mortar to mortar,sdk</keywords>
+
+  <engines>
+    <engine name="cordova" version=">=3.0" />
+  </engines>
+
+  <js-module src="www/m2m.js" name="m2m">
+    <clobbers target="M2M" />
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="M2M">
+        <param name="android-package" value="com.inmarket.M2MPlugin" />
+      </feature>
+    </config-file>
+			
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.INTERNET" />
+    </config-file>
+
+    <source-file
+      src="src/android/M2MPlugin.java"
+      target-dir="src/com/inmarket" />
+
+  </platform>
+</plugin>
