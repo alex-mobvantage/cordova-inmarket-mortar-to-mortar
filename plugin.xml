@@ -22,7 +22,7 @@
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="M2M">
-        <param name="android-package" value="com.inmarket.M2MPlugin" />
+        <param name="android-package" value="com.inmarket.cordova.M2MPlugin" />
       </feature>
     </config-file>
 			
@@ -32,7 +32,9 @@
 
     <source-file
       src="src/android/M2MPlugin.java"
-      target-dir="src/com/inmarket" />
-
+      target-dir="src/com/inmarket/cordova" />
+    
+    <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+    
   </platform>
 </plugin>
