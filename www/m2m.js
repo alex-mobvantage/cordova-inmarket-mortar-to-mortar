@@ -19,6 +19,14 @@ var M2M = {
 
   stopService: function(successCallback, errorCallback){
     cordova.exec(successCallback, errorCallback, 'M2M', 'stopService');
+  },
+
+  requestLocationPermission: function(successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'M2M', 'requestLocationPermission');
+  },
+
+  setOptInForGeofencing: function(optIn, successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'M2M', 'setOptInForGeofencing', [optIn]);
   }
 } 
 

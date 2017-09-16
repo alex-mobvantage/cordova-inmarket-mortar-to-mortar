@@ -17,35 +17,53 @@ public class M2MPlugin extends CordovaPlugin {
     private static final String SET_PUSH_TOKEN = "setPushToken";
     private static final String START_SERVICE = "startService";
     private static final String STOP_SERVICE = "stopService";
+    private static final String REQUEST_LOCATION_PERMISSION = "requestLocationPermission";
+    private static final String SET_OPT_IN_FOR_GEOFENCING = "setOptInForGeofencing";
 
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
+      boolean result = false;
+
       if (action.equals(SET_USER_ID)){
         final String userId = args.getString(0);
         M2MBeaconMonitor.setPublisherUserId(userId);
-        callbackContext.success();
 
-        return true;
+        result = true;
       } else if (action.equals(SET_OPT_IN_FOR_PUSH)){
         final Boolean optIn = args.getBoolean(0);
         M2MBeaconMonitor.setOptInForPush(optIn);
         
-        return true;
+        result = true;
       } else if (action.equals(SET_PUSH_TOKEN)){
         final String token = args.getString(0);
         M2MBeaconMonitor.setPushToken(this.cordova.getActivity().getApplicationContext(), token);
 
-        return true;
+        result = true;
       } else if (action.equals(START_SERVICE)){
         M2MBeaconMonitor.startService();
 
-        return true;
+        result = true;
       } else if (action.equals(STOP_SERVICE)){
         M2MBeaconMonitor.stopService(this.cordova.getActivity().getApplicationContext());
-        
-        return true;
+
+        result = true;
+      } else if (action.equals(REQUEST_LOCATION_PERMISSION)){
+        M2MBeaconMonitor.requestLocationPermission(this.cordova.getActivity());
+
+        result = true;
+      } else if (action.equals(SET_OPT_IN_FOR_GEOFENCING)){
+        final Boolean optIn = args.getBoolean(0);
+        M2MBeaconMonitor.setOptInForGeofencing(optIn);
+
+        result = true;
+      } else {
+        callbackContext.error("Unknown/unsupported action");
       }
 
-      return false;
+      if (result){
+        callbackContext.success();
+      }
+
+      return result;
     }
 }
