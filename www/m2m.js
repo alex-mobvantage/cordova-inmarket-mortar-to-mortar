@@ -21,6 +21,10 @@ var M2M = {
     cordova.exec(successCallback, errorCallback, 'M2M', 'stopService', []);
   },
 
+  getIsStarted: function(successCallback, errorCallback){
+    cordova.exec(successCallback, errorCallback, 'M2M', 'getIsServiceStarted', []);
+  },
+
   requestLocationPermission: function(successCallback, errorCallback){
     cordova.exec(successCallback, errorCallback, 'M2M', 'requestLocationPermission', []);
   },

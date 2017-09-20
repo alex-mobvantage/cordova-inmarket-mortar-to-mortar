@@ -21,9 +21,12 @@ public class M2MPlugin extends CordovaPlugin {
     private static final String SET_PUSH_TOKEN = "setPushToken";
     private static final String START_SERVICE = "startService";
     private static final String STOP_SERVICE = "stopService";
+    private static final String GET_IS_SERVICE_STARTED = "getIsServiceStarted";
     private static final String REQUEST_LOCATION_PERMISSION = "requestLocationPermission";
     private static final String CHECK_LOCATION_PERMISSION = "checkLocationPermission";
     private static final String SET_OPT_IN_FOR_GEOFENCING = "setOptInForGeofencing";
+
+    private boolean isStarted = false;
 
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -50,15 +53,24 @@ public class M2MPlugin extends CordovaPlugin {
         return true;
       } else if (action.equals(START_SERVICE)){
         M2MBeaconMonitor.startService();
+        this.isStarted = true;
 
         Log.d(TAG, "Started service");
         callbackContext.success();
         return true;
       } else if (action.equals(STOP_SERVICE)){
         M2MBeaconMonitor.stopService(this.cordova.getActivity().getApplicationContext());
+        this.isStarted = false;
 
         Log.d(TAG, "Stopped service");
         callbackContext.success();
+        return true;
+      } else if (action.equals(GET_IS_SERVICE_STARTED)){
+        final JSONObject result = new JSONObject();
+        result.put("is_started", this.isStarted);
+
+        Log.d(TAG, "Get is started: " + this.isStarted);
+        callbackContext.success(result);
         return true;
       } else if (action.equals(REQUEST_LOCATION_PERMISSION)){
         M2MBeaconMonitor.requestLocationPermission(this.cordova.getActivity());

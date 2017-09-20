@@ -34,9 +34,14 @@ cordova plugin remove M2M
 
 * `stopService(successCallback, errorCallback)`
 
+* `getIsStarted(successCallback, errorCallback)`
+
+Returns an object with boolean property `is_started`
+
 * `requestLocationPermission(successCallback, errorCallback)`
 
 * `checkLocationPermission(successCallback, errorCallback)`
+
 Returns an object with boolean property `has_permission`
 
 * `setOptInForGeofencing(optIn, successCallback, errorCallback)`
